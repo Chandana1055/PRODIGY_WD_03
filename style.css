@@ -1,0 +1,128 @@
+/* 1. Global Reset & Variables */
+:root {
+    --bg-pink: #fff0f3;        /* Soft Pastel Pink */
+    --card-white: #ffffff;
+    --accent-pink: #ffb6c1;    /* Standard Pink */
+    --dark-pink: #ff8da1;      /* For Buttons & X's */
+    --player-x: #ff758f;       /* Deep Pink */
+    --player-o: #70d6ff;       /* Soft Blue for contrast */
+    --win-bg: #c1fba4;         /* Soft Mint for winning cells */
+    --text: #4a4e69;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* 2. Full Page Centering */
+body {
+    background-color: var(--bg-pink);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: var(--text);
+}
+
+.game-container {
+    text-align: center;
+    width: 90%;
+    max-width: 400px; /* Keeps the board from getting too huge on desktop */
+}
+
+/* 3. Typography */
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: var(--dark-pink);
+    font-weight: 700;
+}
+
+#status {
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    height: 1.8rem; /* Prevents layout jump when text changes */
+}
+
+/* 4. The Responsive Grid */
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    background: rgba(255, 255, 255, 0.4); /* Glass effect */
+    padding: 15px;
+    border-radius: 24px;
+    box-shadow: 0 10px 25px rgba(255, 182, 193, 0.2);
+    margin-bottom: 25px;
+}
+
+.cell {
+    aspect-ratio: 1 / 1; /* Keeps cells perfectly square */
+    background: var(--card-white);
+    border-radius: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.8rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 4px 0px rgba(0,0,0,0.03);
+    user-select: none;
+}
+
+/* 5. Interactivity & Animations */
+.cell:hover {
+    transform: translateY(-3px);
+    background-color: #fff9fa;
+}
+
+/* X and O Colors */
+.cell.x { color: var(--player-x); }
+.cell.o { color: var(--player-o); }
+
+/* Winning Highlight */
+.cell.winner {
+    background-color: var(--win-bg);
+    color: #2d6a4f;
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(193, 251, 164, 0.6);
+}
+
+/* 6. Styled Reset Button */
+.reset-btn {
+    background-color: var(--accent-pink);
+    color: white;
+    border: none;
+    padding: 14px 35px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 141, 161, 0.3);
+}
+
+.reset-btn:hover {
+    background-color: var(--dark-pink);
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(255, 141, 161, 0.4);
+}
+
+.reset-btn:active {
+    transform: scale(0.98);
+}
+
+/* Mobile Adjustments */
+@media (max-width: 350px) {
+    .cell {
+        font-size: 2rem;
+    }
+    h1 {
+        font-size: 2rem;
+    }
+}
